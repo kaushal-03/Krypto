@@ -16,6 +16,7 @@ import App from "../App";
 import { auth } from "../Auth";
 import {signInWithEmailAndPassword } from "firebase/auth";
 import { Link, Router } from "react-router-dom";
+import Header from "./Header";
 function Login() {
  
   const [loginEmail,setloginEmail]=useState("");
@@ -28,21 +29,25 @@ function Login() {
       const user = await signInWithEmailAndPassword(auth,loginEmail,loginpassword);
       console.log(user);
       setlogin(true); 
-        
+      console.log("Login Successful")
     }
     catch(error)
     {
         console.log("ERROR 404!!");
         setlogin(false);
+        console.log("Login unSuccessful")
     }
   }
   return (
     <>
-    <Flex
+    {checklog?(
+    <App />
+    ):(
+      <Flex
       minH={"80vh"}
       align={"center"}
       justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
+      // bg={useColorModeValue("gray.50", "gray.800")}
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
@@ -53,7 +58,7 @@ function Login() {
         </Stack>
         <Box
           rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
+          // bg={useColorModeValue("white", "gray.700")}
           boxShadow={"lg"}
           p={8}
         >
@@ -87,6 +92,8 @@ function Login() {
         </Box>
       </Stack>
     </Flex>
+    )}
+    
     </>
   );
 }
