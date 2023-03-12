@@ -5,6 +5,9 @@ import {server} from "../index";
 import { Button, Container, HStack, RadioGroup, WrapItem , Radio, Wrap} from '@chakra-ui/react';
 import Newcard from "./Newcard"
 import Loader from './Loader';
+
+
+
 const Coin = () => {
   const [cdata, setcdata] = useState([]);
   const [loading, setload] = useState(true);
