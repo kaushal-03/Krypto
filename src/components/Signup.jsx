@@ -2,17 +2,29 @@ import {Flex,Box,FormControl,FormLabel,Input,InputGroup,HStack,InputRightElement
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {createUserWithEmailAndPassword } from "firebase/auth";
+import { db } from "../firebase-config";
+import { collection, getDocs,addDoc } from "firebase/firestore";
 import { auth } from "../Auth";
+import { updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 function Signup() {
+  
+  const collectionref = collection(db, "profile details");
   const [showPassword, setShowPassword] = useState(false);
   const [registerEmail,setregisterEmail]=useState("");
   const [registerpassword,setregisterpassword]=useState("");
-
-  const register = async () => 
+  const [phone,setphonenum]=useState(0);
+  const [users , setusers] = useState([]);
+  const [registername,setregistername]=useState("");
+  const email = registerEmail;
+  const navigate = useNavigate();
+ const register = async () => 
   {
     try
     {
       const user = await createUserWithEmailAndPassword(auth,registerEmail,registerpassword);
+      await addDoc(collectionref,{name:registername,email:registerEmail});
+      navigate("/login")
     }
     catch(error)
     {
@@ -43,14 +55,8 @@ function Signup() {
             <HStack>
               <Box>
                 <FormControl id="firstName" isRequired>
-                  <FormLabel>First Name</FormLabel>
-                  <Input type="text"/>
-                </FormControl>
-              </Box>
-              <Box>
-                <FormControl id="lastName">
-                  <FormLabel>Last Name</FormLabel>
-                  <Input type="text" />
+                  <FormLabel>Name</FormLabel>
+                  <Input type="text" onChange={(event)=>{setregistername(event.target.value)}}/>
                 </FormControl>
               </Box>
             </HStack>
@@ -98,3 +104,4 @@ function Signup() {
   );
 }
 export default Signup;
+

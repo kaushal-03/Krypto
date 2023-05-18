@@ -5,7 +5,7 @@ import {server} from "../index";
 import { Button, Container, HStack, RadioGroup, WrapItem , Radio, Wrap} from '@chakra-ui/react';
 import Newcard from "./Newcard"
 import Loader from './Loader';
-
+import "../coin.css";
 
 
 const Coin = () => {
@@ -37,7 +37,8 @@ function rchan(event)
   setload(true);
 }
  return (
-    <Container maxW={"Container.xl"}>
+<div class = "main">
+    <div class="rr">
        <RadioGroup onChange={setCurrency} value={currency}>
         <HStack>
           <Radio value={"inr"}>₹</Radio>
@@ -45,26 +46,28 @@ function rchan(event)
           <Radio value={"eur"}>€</Radio>
         </HStack>
       </RadioGroup>
-    <Container maxW={"Container.xl"} ml={"10"}/>
-      {loading?(<Loader/>):(      
-      <Wrap>{cdata.map((i)=>(
-        <WrapItem><Newcard  id={i.id}
-        name={i.name}
-        img={i.image}
-        symbol={i.symbol}
-        price={i.current_price}
-        cur={currency} />
-
-        </WrapItem>
-        
-      ))}</Wrap>)}
+      </div>
+      <div class="root">
+      
+      {cdata.map((i) => (
+        <div class="card">
+        <img src={i.image} style={{height:"60px",width:"60px"}}></img>
+        <p>Name:{i.name}</p>
+        <p>year:{i.high_24h}</p>
+        <p>Score:{i.low_24h}</p>
+        <button class="button-15" onClick={() => console.log(i.id)}>Follow</button>
+    
+      </div>
+      ))}
+    </div>
+      <div>
       <HStack w={"full"} overflowX={"auto"} p={"8"}>
         {btns.map((item,index) => (
         <Button onClick={pchan} value={index+1}>{index+1}</Button>
         ))}
       </HStack>
-    </Container>
-   
+    </div>
+  </div>
   )
 }
 

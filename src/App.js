@@ -14,17 +14,22 @@ import Compo from './Compo';
 import { Reroute } from './Reroute';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Profile from './components/Profile';
+import { Container } from '@chakra-ui/react'
 function App() {
   return (
-    <div className="App">
+    <div >
       <Router>
-      <Header />
+     
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login/>} />
+          <Route path="/home" element={<><Header/><Home/></>}/>
           <Route path="/coin" element={<Coin />} />
           <Route path="/coin/:id" element={<Coindetails />} />
           <Route path="/exchanges" element={<Exchanges/>} />
-          <Route path="/login" element={<Login/>}/>
+          <Route path="/login" element={<Login/>} />
+          <Route path="/signup" element={<Signup/>} />
+          <Route path="/profile" element={<Profile/>} />
         </Routes>
       </Router>
     </div>

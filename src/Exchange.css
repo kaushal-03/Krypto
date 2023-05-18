@@ -1,0 +1,33 @@
+.root
+{
+    padding-top: 50px;
+    width:fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap:wrap;
+    gap: 10px;
+    
+}
+
+.card
+{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 200px;
+    width: 200px;
+    border:1px solid;
+    border-color: black;
+    border-radius: 10px;
+
+
+}
+
+.card:hover {
+    transform: scale(1.1);
+  }
+  

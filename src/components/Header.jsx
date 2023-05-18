@@ -9,9 +9,11 @@ const Header = () => {
   return (
     <Container p={4}  mb="10" maxW='10xl' shadow={"base"} borderRadius={10} bg="gray.100">
       <Flex direction="row" justify="space-evenly">
-     <Button leftIcon={<FaHome />} colorScheme='facebook' variant='solid'><Link to="/">Home</Link></Button>
+     <Button leftIcon={<FaHome />} colorScheme='facebook' variant='solid'><Link to="/home">Home</Link></Button>
      <Button leftIcon={<FcCurrencyExchange />} colorScheme='facebook' variant='solid'><Link to="/exchanges">Exchanges</Link></Button>
      <Button leftIcon={<SiBitcoinsv />} colorScheme='facebook' variant='solid'><Link to="/coin">Coins</Link></Button>
+     <Button  colorScheme='facebook' variant='outline'><Link to="/profile">Profile</Link></Button>
+
      </Flex>
    
   </Container>

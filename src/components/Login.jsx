@@ -13,12 +13,16 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import App from "../App";
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser } from './store';
 import { auth } from "../Auth";
 import {signInWithEmailAndPassword } from "firebase/auth";
 import { Link, Router } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 function Login() {
- 
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [loginEmail,setloginEmail]=useState("");
   const [loginpassword,setloginpassword]=useState("");
   const [checklog,setlogin]=useState(false);
@@ -30,6 +34,14 @@ function Login() {
       console.log(user);
       setlogin(true); 
       console.log("Login Successful")
+      console.log(loginEmail);
+      dispatch(
+        setUser({
+          email: loginEmail,
+        })
+      );
+      navigate("/home")
+
     }
     catch(error)
     {
@@ -38,11 +50,11 @@ function Login() {
         console.log("Login unSuccessful")
     }
   }
+  const Signup=()=>
+  {
+    navigate("/signup")
+  }
   return (
-    <>
-    {checklog?(
-    <App />
-    ):(
       <Flex
       minH={"80vh"}
       align={"center"}
@@ -87,14 +99,22 @@ function Login() {
               >
                 Sign in
               </Button>
+              <Button
+               onClick={Signup}
+                bg={"blue.400"}
+                color={"white"}
+                _hover={{
+                  bg: "blue.500",
+                }}
+              >
+                Sign Up
+              </Button>
             </Stack>
           </Stack>
         </Box>
       </Stack>
     </Flex>
     )}
-    
-    </>
-  );
-}
+   
+     
 export default Login;
