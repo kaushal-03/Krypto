@@ -15,6 +15,8 @@ import { Reroute } from './Reroute';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Profile from './components/Profile';
+import Profiecard from './components/Profiecard';
+import Graphe from './components/Graphe';
 import { Container } from '@chakra-ui/react'
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Signup/>} />
           <Route path="/profile" element={<Profile/>} />
+          <Route path="/graph" element={<Graphe />} />
         </Routes>
       </Router>
     </div>
