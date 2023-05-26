@@ -40,7 +40,7 @@ function Chart(props) {
           {
             label: `Price in inr`,
             data: prices,
-            borderColor: "rgb(255,99,132)",
+            borderColor: "#4942E4",
             backgroundColor: "rgba(255,99,132,0.5)",
           },
         ],
